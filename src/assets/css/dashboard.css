@@ -1,0 +1,87 @@
+/* Style for dashboard header */
+
+.dashboard-header {
+    margin: 49px 0px 59px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.dashboard-header h1 {
+    font-weight: 700;
+    font-size: 36px;
+}
+
+.dashboard-header .add-button {
+    width: 170px;
+    height: 54px;
+    background-color: #16abf8;
+    border-radius: 45px;
+    border: 0;
+    padding: 13px 21px 13px 14px;
+    font-size: 18px;
+    font-weight: 600;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 6px;
+}
+
+.dashboard-header .add-icon {
+    background-image: url(/src/assets/img/add-icon.svg);
+    width: 24px;
+    height: 24px;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* Style for empty dashboard content */
+
+.container {
+    max-width: 1000px;
+}
+
+.dashbaord-empty {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Style for dashboard activity */
+.card-wrapper {
+    padding: 0 20px 0 0;
+}
+
+.activity-card {
+    height: 234px;
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 22px 26px;
+    margin-bottom: 26px;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, .15);
+}
+
+.activity-container {
+    height: 155px;
+}
+
+.activity-card h4 {
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.activity-footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.activity-date {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.activity-card img[src*="delete"] {
+    width: 16px;
+}
