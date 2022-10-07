@@ -7,7 +7,7 @@ export default function DashboardHeader() {
     const [loading, setLoading] = useState(false)
 
     return (
-        <div className='dashboard-header'>
+        <div className='content-header'>
             <h1 data-cy="activity-title">Activity</h1>
             <Button
                 className='custom-button'

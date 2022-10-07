@@ -29,8 +29,7 @@ export default function DashboardActivity() {
                         </div>
                         <div className='activity-footer'>
                             <span data-cy="activity-item-date" className='activity-date'>07 Oktober 2022</span>
-                            {/* <img src={deleteIcon} alt="Delete Icon" data-cy="activity-item-delete-button" onClick={() => setModalShow(true)} /> */}
-                            <img src={deleteIcon} alt="Delete Icon" data-cy="activity-item-delete-button" onClick={() => setAlert(true)} />
+                            <img src={deleteIcon} alt="Delete Icon" data-cy="activity-item-delete-button" onClick={() => setModalShow(true)} />
                         </div>
                     </div>
                 </Col>

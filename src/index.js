@@ -1,20 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './assets/css/index.css';
-import './assets/css/header.css';
-import './assets/css/dashboard.css';
-import './assets/css/loading.css';
-import './assets/css/button.css'
+import './assets/css/style.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Header from './components/Header';
-import Dashboard from './pages/Dashboard/Dashboard';
+// import Dashboard from './pages/Dashboard/Dashboard';
+import TodoList from './pages/TodoList/TodoList';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Header />
-    <Dashboard />
+    {/* <Dashboard /> */}
+    <TodoList/>
   </React.StrictMode>
 );
 

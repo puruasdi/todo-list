@@ -1,0 +1,219 @@
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #f4f4f4 !important;
+}
+
+.wrapper {
+    max-width: 1000px;
+    margin: auto;
+}
+
+
+/* header-background */
+header {
+    width: 100%;
+    color: white;
+    height: 105px;
+    display: flex;
+    align-items: center;
+    background: #16ABF8;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+header h2 {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+/* Style for content header */
+
+.content-header {
+    margin: 49px 0px 59px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.content-header h1 {
+    font-weight: 700;
+    font-size: 36px;
+    margin: 0;
+}
+
+.content-header .custom-button {
+    width: 170px;
+    height: 54px;
+    background-color: #16abf8;
+    border-radius: 45px;
+    border: 0;
+    padding: 13px 21px 13px 14px;
+    font-size: 18px;
+    font-weight: 600;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 6px;
+}
+
+.content-header .add-icon {
+    background-image: url(/src/assets/img/add-icon.svg);
+    width: 24px;
+    height: 24px;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.new-activity-title {
+    display: flex;
+    align-items: center;
+}
+
+.back-icon {
+    width: 32px;
+    height: 32px;
+    margin-right: 19px;
+    cursor: pointer;
+}
+
+.edit-icon {
+    margin-left: 23px;
+    cursor: pointer;
+}
+
+.sort-add-button {
+    display: flex;
+}
+
+#customSortButton {
+    width: 54px;
+    height: 54px;
+    margin-right: 18px;
+    border: 1px solid #E5E5E5;
+    border-radius: 50%;
+    display: flex;
+    cursor: pointer;
+}
+
+#sortIcon {
+    width: 24px;
+    margin: auto;
+}
+
+/* Style for empty dashboard content */
+
+.container {
+    max-width: 1000px;
+}
+
+.dashbaord-empty {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Style for dashboard activity */
+.card-wrapper {
+    padding: 0 20px 0 0;
+}
+
+.activity-card {
+    height: 234px;
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 22px 26px;
+    margin-bottom: 26px;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, .15);
+}
+
+.activity-container {
+    height: 155px;
+}
+
+.activity-card h4 {
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.activity-footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.activity-date {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.activity-card img[src*="delete"] {
+    width: 16px;
+    cursor: pointer;
+}
+
+/* Button style */
+.button {
+    border-radius: 45px;
+    border: 0;
+    padding: 13.5px 29px;
+    font-size: 18px;
+    font-weight: 600;
+    width: 150px;
+    height: 54px;
+    margin: 0 10px !important;
+}
+
+.delete-button {
+    background-color: #ed4c5c;
+    color: #f4f4f4;
+}
+
+.cancel-button {
+    background-color: #f4f4f4;
+    color: #4a4a4a;
+}
+
+/* Loading ring */
+.lds-ring {
+    display: inline-block;
+    position: relative;
+    width: 40px;
+    height: 40px;
+}
+
+.lds-ring div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border: 4px solid #fff;
+    border-radius: 50%;
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: #fff transparent transparent transparent;
+}
+
+.lds-ring div:nth-child(1) {
+    animation-delay: -0.45s;
+}
+
+.lds-ring div:nth-child(2) {
+    animation-delay: -0.3s;
+}
+
+.lds-ring div:nth-child(3) {
+    animation-delay: -0.15s;
+}
+
+@keyframes lds-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
