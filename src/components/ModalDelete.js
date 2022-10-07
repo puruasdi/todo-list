@@ -1,6 +1,5 @@
 import React from 'react';
-import { Modal, Button } from 'react-bootstrap'
-
+import { Modal } from 'react-bootstrap'
 import alertIcon from '../assets/img/alert-icon.svg'
 
 const footerStyle = {
@@ -31,7 +30,6 @@ const pBodyStyle = {
 }
 
 export default function ModalDelete(props) {
-
     const { onHide, name, value } = props
 
     return (
@@ -42,13 +40,13 @@ export default function ModalDelete(props) {
         >
             <Modal.Header style={headerStyle}>
                 <Modal.Title style={titleStyle}>
-                    <img src={alertIcon} />
+                    <img src={alertIcon} alt="Warning" />
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body style={bodyStyle}>
                 <p style={pBodyStyle}>
                     Apakah anda yakin menghapus {name} {" "}
-                <b>"{value}"</b>
+                    <b>"{value}"</b>
                 </p>
             </Modal.Body>
             <Modal.Footer
