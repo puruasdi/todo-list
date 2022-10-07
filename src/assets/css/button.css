@@ -1,0 +1,20 @@
+/* Button style */
+.button {
+    border-radius: 45px;
+    border: 0;
+    padding: 13.5px 29px;
+    font-size: 18px;
+    font-weight: 600;
+    width: 150px;
+    height: 54px;
+    margin: 0 10px !important;
+}
+
+.delete-button {
+    background-color: #ed4c5c;
+    color: #f4f4f4;
+}
+.cancel-button {
+    background-color: #f4f4f4;
+    color: #4a4a4a;
+}

@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client';
 import './assets/css/index.css';
 import './assets/css/header.css';
 import './assets/css/dashboard.css';
+import './assets/css/loading.css';
+import './assets/css/button.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Header from './components/Header';

@@ -11,7 +11,7 @@
     font-size: 36px;
 }
 
-.dashboard-header .add-button {
+.dashboard-header .custom-button {
     width: 170px;
     height: 54px;
     background-color: #16abf8;
@@ -84,4 +84,5 @@
 
 .activity-card img[src*="delete"] {
     width: 16px;
+    cursor: pointer;
 }
