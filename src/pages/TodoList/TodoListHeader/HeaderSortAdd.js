@@ -14,13 +14,13 @@ import activeIcon from "../../../assets/img/active-icon.svg"
 export default function HeaderSortAdd() {
 
     const [loading, setLoading] = useState(false)
-    const [showSort, setShowSort] = useState(false)
+    // const [showSort, setShowSort] = useState(false)
 
     return (
         <div className='sort-add-button'>
             <Dropdown>
                 <Dropdown.Toggle>
-                    <img src={sortIcon} className="sort-icon" />
+                    <img src={sortIcon} className="sort-icon" alt="Sort" />
                 </Dropdown.Toggle>
                 <Dropdown.Menu className='dropdown-menu-container' >
                     <Dropdown.Item href="#/action-1"

@@ -10,7 +10,7 @@ import Header from './components/Header';
 import Dashboard from './pages/Dashboard/Dashboard';
 import TodoList from './pages/TodoList/TodoList';
 import ErrorPage from './components/Error';
-
+import ModalAlert from './components/ModalAlert';
 
 //Route
 import {
@@ -18,6 +18,9 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
+//Redux
+import store from "../src/state/store/store"
+import { Provider } from 'react-redux';
 
 const router = createBrowserRouter([
   {
@@ -33,9 +36,12 @@ const router = createBrowserRouter([
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode>
+  <Provider store={store}>
     <Header />
     <RouterProvider router={router} />
-  </React.StrictMode>
+    <ModalAlert />
+  </Provider>
+  // </React.StrictMode>
 );
 

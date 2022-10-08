@@ -1,13 +1,25 @@
 import React from 'react';
 import { Modal, Button } from 'react-bootstrap'
+
+//component
+import Loading from './Loading';
+
+//image
 import alertIcon from '../assets/img/alert-icon.svg'
 
+//redux
+import { useSelector } from "react-redux"
+
 export default function ModalDelete(props) {
-    const { onHide, name, value } = props
+    const { name, value, setShow, show, handleDelete, id } = props
+
+    //redux
+    const deleteLoading = useSelector((state) => state.loading.deleteLoading)
 
     return (
         <Modal
-            {...props}
+            show={show}
+            onHide={() => setShow(false)}
             size="md"
             centered
         >
@@ -25,9 +37,20 @@ export default function ModalDelete(props) {
             <Modal.Footer
                 id="footerStyle"
             >
-                <Button variant="light" onClick={() => onHide()}>Batal</Button>
-                <Button variant="danger" onClick={() => onHide()}>Hapus</Button>
+                <Button variant="light" onClick={() => setShow(false)}>Batal</Button>
+                <Button
+                    className='custom-button'
+                    variant="danger"
+                    onClick={() => handleDelete(id)}
+                >
+                    {deleteLoading ?
+                        <Loading /> :
+                        <>
+                            <span className='add-icon'></span>
+                            Hapus
+                        </>}
+                </Button>
             </Modal.Footer>
-        </Modal>
+        </Modal >
     )
 }

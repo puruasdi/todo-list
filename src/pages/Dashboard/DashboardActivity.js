@@ -6,42 +6,53 @@ import { Row, Col } from "react-bootstrap";
 //icon
 import deleteIcon from '../../assets/img/delete-icon.svg'
 import ModalDelete from '../../components/ModalDelete';
-import ModalAlert from '../../components/ModalAlert'
 
 //router
 import { Link } from "react-router-dom";
 
-export default function DashboardActivity() {
+//set moment local to Indonesia
+import moment from "moment"
+import 'moment/locale/id';
+moment.locale('id');
+
+export default function DashboardActivity({ activities, deleteActivity }) {
     const [modalShow, setModalShow] = useState(false);
-    const [alert, setAlert] = useState(false)
+
+    //select activity to get activity.id on delete purpose
+    const [selectedActivity, setSelectedActivity] = useState('')
 
     return (
         <>
-            <ModalAlert
-                show={alert}
-                onHide={() => setAlert(false)}
-            />
             <ModalDelete
                 data-cy="todo-modal-delete"
                 show={modalShow}
-                onHide={() => setModalShow(false)}
+                setShow={setModalShow}
                 name="activity"
-                value="Meeting dengan asdi"
+                value={selectedActivity?.title}
+                id={selectedActivity?.id}
+                handleDelete={deleteActivity}
             />
             <Row>
-                <Col md="6" lg='3' className='card-wrapper'>
-                    <div className='activity-card' data-cy="activity-item">
-                        <Link to={`detail/1`} className="link-custom" >
-                            <div className='activity-container' >
-                                <h4 data-cy="activity-item-title" >New Activity</h4>
+                {activities.map(activity => (
+                    <Col md="6" lg='3' className='card-wrapper' key={activity.id}>
+                        <div className='activity-card' data-cy="activity-item">
+                            <Link to={`detail/1`} className="link-custom" >
+                                <div className='activity-container' >
+                                    <h4 data-cy="activity-item-title" >{activity.title}</h4>
+                                </div>
+                            </Link>
+                            <div className='activity-footer'>
+                                <span data-cy="activity-item-date" className='activity-date'>{moment(activity.created_at).format('LL')}</span>
+                                <img
+                                    src={deleteIcon}
+                                    alt="Delete Icon"
+                                    data-cy="activity-item-delete-button"
+                                    onClick={() => { setSelectedActivity(activity); setModalShow(true); }}
+                                />
                             </div>
-                        </Link>
-                        <div className='activity-footer'>
-                            <span data-cy="activity-item-date" className='activity-date'>07 Oktober 2022</span>
-                            <img src={deleteIcon} alt="Delete Icon" data-cy="activity-item-delete-button" onClick={() => setModalShow(true)} />
                         </div>
-                    </div>
-                </Col>
+                    </Col>
+                ))}
             </Row>
         </>
     )

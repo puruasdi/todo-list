@@ -2,10 +2,19 @@ import React from 'react'
 import { Modal } from "react-bootstrap"
 import iconAlertSmall from '../assets/img/icon-alert-small.svg'
 
-export default function ModalAlert(props) {
+//redux
+import { useSelector, useDispatch } from 'react-redux';
+import { setShowAlert } from '../state/slice/alertSlice';
+
+export default function ModalAlert() {
+    //redux
+    const { showAlert, alertName } = useSelector((state) => state.alert)
+    const dispatch = useDispatch()
+
     return (
         <Modal
-            {...props}
+            show={showAlert}
+            onHide={() => dispatch(setShowAlert(false))}
             size="md"
             centered
         >
@@ -18,7 +27,7 @@ export default function ModalAlert(props) {
             >
                 <img src={iconAlertSmall} alt="Alert" />
                 <p style={{ marginLeft: '13px' }}>
-                    {props.name} berhasil dihapus
+                    {alertName} berhasil dihapus
                 </p>
             </Modal.Body>
         </Modal>

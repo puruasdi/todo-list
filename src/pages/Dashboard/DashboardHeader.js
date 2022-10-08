@@ -1,10 +1,15 @@
-import { useState } from 'react';
+import React from 'react';
 import { Button } from "react-bootstrap";
+
+//component
 import Loading from '../../components/Loading';
 
-export default function DashboardHeader() {
-    //state
-    const [loading, setLoading] = useState(false)
+//redux
+import { useSelector } from "react-redux"
+
+export default function DashboardHeader({ handleClick }) {
+    //redux
+    const addLoading = useSelector((state) => state.loading.addLoading)
 
     return (
         <div className='content-header'>
@@ -12,9 +17,9 @@ export default function DashboardHeader() {
             <Button
                 className='custom-button'
                 data-cy="activity-add-button"
-                onClick={() => setLoading(!loading)}
+                onClick={() => handleClick()}
             >
-                {loading ?
+                {addLoading ?
                     <Loading /> :
                     <>
                         <span className='add-icon'></span>

@@ -1,10 +1,14 @@
-import { useState } from 'react'
+// import { useState } from 'react'
 import { Modal, Form, Row, Col, Dropdown } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button';
 
+const selectDropdown = "Very High"
+
 export default function TodoListModal(props) {
 
-    const [selectDropdown, setSelectDropdown] = useState("Very High")
+    // const [selectDropdown, setSelectDropdown] = useState("Very High")
+
+
     return (
         <Modal
             {...props}
