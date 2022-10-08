@@ -1,5 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 
+//router
+import { Link } from "react-router-dom";
+
+//icon
 import backIcon from "../../../assets/img/back-icon.svg"
 import editIcon from "../../../assets/img/edit-icon.svg"
 
@@ -33,7 +37,9 @@ export default function HeaderTitle() {
 
     return (
         <div className='header-title'>
-            <img src={backIcon} className="back-icon" alt="Back" />
+            <Link to={`/`}>
+                <img src={backIcon} className="back-icon" alt="Back" />
+            </Link>
             {edit ?
                 <input
                     className="input-activity"

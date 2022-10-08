@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 
+
+/* Element Style */
 body {
     margin: 0;
     font-family: "Poppins", sans-serif !important;
@@ -8,6 +10,21 @@ body {
     background-color: #f4f4f4 !important;
 }
 
+/*Page Header Style */
+header {
+    width: 100%;
+    color: white;
+    height: 105px;
+    display: flex;
+    align-items: center;
+    background: #16ABF8;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+header h2 {
+    font-weight: bold;
+    font-size: 24px;
+}
 
 /* Page warapper */
 .wrapper {
@@ -30,20 +47,16 @@ body {
     padding: 0 20px 0 0;
 }
 
-/*Page Header Style */
-header {
-    width: 100%;
-    color: white;
-    height: 105px;
+/* Error Page */
+#error-page {
+    height: calc(100vh - 105px);
+    text-align: center;
     display: flex;
-    align-items: center;
-    background: #16ABF8;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    flex-direction: column;
 }
 
-header h2 {
-    font-weight: bold;
-    font-size: 24px;
+#error-wrapper {
+    margin: auto;
 }
 
 /* Content header style */
@@ -220,6 +233,7 @@ button[disabled] {
 .activity-card h4 {
     font-weight: 700;
     font-size: 18px;
+    text-decoration: none !important;
 }
 
 .activity-footer {
@@ -355,6 +369,11 @@ button[disabled] {
 
 .form-dropdown-custom::after {
     margin-left: auto !important;
+}
+
+.link-custom{
+    text-decoration: none !important;
+    color: black !important;
 }
 
 /* Loading ring */
