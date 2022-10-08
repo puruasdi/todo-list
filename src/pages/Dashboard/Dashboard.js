@@ -53,7 +53,7 @@ export default function Dashboard() {
         }
     }
 
-    const addActivity = async (id) => {
+    const addActivity = async () => {
         dispatch(setAddLoading(true))
         try {
             await axios.post(`${mainurl}/activity-groups`, {
