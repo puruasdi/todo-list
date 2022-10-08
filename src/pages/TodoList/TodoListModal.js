@@ -5,13 +5,14 @@ import Button from 'react-bootstrap/Button';
 const selectDropdown = "Very High"
 
 export default function TodoListModal(props) {
+    const { show, setShow } = props;
 
     // const [selectDropdown, setSelectDropdown] = useState("Very High")
 
-
     return (
         <Modal
-            {...props}
+            show={show}
+            onHide={() => setShow(false)}
             size="lg"
             centered
         >
@@ -42,7 +43,7 @@ export default function TodoListModal(props) {
                                     <Dropdown.Menu>
                                         <Dropdown.Item href="#/action-1">Very High</Dropdown.Item>
                                         <Dropdown.Item href="#/action-1">High</Dropdown.Item>
-                                        <Dropdown.Item href="#/action-1">Medium</Dropdown.Item>
+                                        <Dropdown.Item href="#/action-1">Normal</Dropdown.Item>
                                         <Dropdown.Item href="#/action-1">Low</Dropdown.Item>
                                         <Dropdown.Item href="#/action-1">Very Low</Dropdown.Item>
                                     </Dropdown.Menu>

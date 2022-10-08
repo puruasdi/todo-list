@@ -3,7 +3,7 @@ import { Container } from "react-bootstrap";
 
 import axios from 'axios'
 
-//Component
+//Components
 import DashboardHeader from './DashboardHeader';
 import DashboardEmpty from './DashboardEmpty';
 import DashboardActivity from './DashboardActivity';
@@ -84,11 +84,13 @@ export default function Dashboard() {
                     < BigLoading /> :
                     activities.length === 0 ?
                         //If data is empty show empty dashboard
-                        <DashboardEmpty /> :
+                        <DashboardEmpty
+                            addActivity={addActivity}
+                        /> :
                         //Show activicty cards
                         <DashboardActivity
                             activities={activities}
-                            deleteActivity={deleteActivity}
+                            handleDelete={deleteActivity}
                         />
                 }
             </div>

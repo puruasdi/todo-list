@@ -11,10 +11,23 @@ import sortAZIcon from "../../../assets/img/sort-az-icon.svg"
 import sortZAIcon from "../../../assets/img/sort-za-icon.svg"
 import activeIcon from "../../../assets/img/active-icon.svg"
 
-export default function HeaderSortAdd() {
+//redux
+import { useSelector, useDispatch } from "react-redux"
+import { setSelectedSort } from '../../../state/slice/todoSlice'
 
-    const [loading, setLoading] = useState(false)
-    // const [showSort, setShowSort] = useState(false)
+//Varibale for dropdown items
+const dropdownItems = [
+    { name: "Terbaru", iconName: sortNewestIcon },
+    { name: "Terlama", iconName: sortLatestIcon },
+    { name: "A-Z", iconName: sortAZIcon },
+    { name: "Z-A", iconName: sortZAIcon },
+    { name: "Belum Selesai", iconName: activeIcon },
+]
+
+export default function HeaderSortAdd({ handleClick }) {
+    //redux
+    const dispatch = useDispatch()
+    const { selectedSort } = useSelector((state) => state.todo)
 
     return (
         <div className='sort-add-button'>
@@ -23,67 +36,32 @@ export default function HeaderSortAdd() {
                     <img src={sortIcon} className="sort-icon" alt="Sort" />
                 </Dropdown.Toggle>
                 <Dropdown.Menu className='dropdown-menu-container' >
-                    <Dropdown.Item href="#/action-1"
-                        className="dropdown-item-container"
-                    >
-                        <div className='dropdown-item'>
-                            <img src={sortNewestIcon} alt="Newest" className='dropdown-item-img' />
-                            <span className='dropdown-item-name'>Terbaru</span>
-                            <img src={checkIcon} alt="Check" className='dropdown-item-check' />
-                        </div>
-                    </Dropdown.Item>
-                    <Dropdown.Item href="#/action-1"
-                        className="dropdown-item-container"
-                    >
-                        <div className='dropdown-item'>
-                            <img src={sortLatestIcon} alt="Latest" className='dropdown-item-img' />
-                            <span className='dropdown-item-name'>Terlama</span>
-                            <img src={checkIcon} alt="Check" className='dropdown-item-check' />
-                        </div>
-                    </Dropdown.Item>
-                    <Dropdown.Item href="#/action-1"
-                        className="dropdown-item-container"
-                    >
-                        <div className='dropdown-item'>
-                            <img src={sortAZIcon} alt="Newest" className='dropdown-item-img' />
-                            <span className='dropdown-item-name'>A-Z</span>
-                            <img src={checkIcon} alt="Check" className='dropdown-item-check' />
-                        </div>
-                    </Dropdown.Item>
-                    <Dropdown.Item href="#/action-1"
-                        className="dropdown-item-container"
-                    >
-                        <div className='dropdown-item'>
-                            <img src={sortZAIcon} alt="Newest" className='dropdown-item-img' />
-                            <span className='dropdown-item-name'>Z-A</span>
-                            <img src={checkIcon} alt="Check" className='dropdown-item-check' />
-                        </div>
-                    </Dropdown.Item>
-                    <Dropdown.Item href="#/action-1"
-                        className="dropdown-item-container"
-                    >
-                        <div className='dropdown-item'>
-                            <img src={activeIcon} alt="Newest" className='dropdown-item-img' />
-                            <span className='dropdown-item-name'>Belum Selesai</span>
-                            <img src={checkIcon} alt="Check" className='dropdown-item-check' />
-                        </div>
-                    </Dropdown.Item>
+                    {dropdownItems.map(item => (
+                        <Dropdown.Item href="#/"
+                            key={item.name}
+                            className="dropdown-item-container"
+                            onClick={() => dispatch(setSelectedSort(item.name))}
+                        >
+                            <div className='dropdown-item'>
+                                <img src={item.iconName} alt="Newest" className='dropdown-item-img' />
+                                <span className='dropdown-item-name'>{item.name}</span>
+                                {selectedSort === item.name ?
+                                    <img src={checkIcon} alt="Check" className='dropdown-item-check' /> : null
+                                }
+                            </div>
+                        </Dropdown.Item>
+
+                    ))}
                 </Dropdown.Menu>
             </Dropdown>
-
-
 
             <Button
                 className='custom-button'
                 data-cy="activity-add-button"
-                onClick={() => setLoading(!loading)}
+                onClick={() => handleClick(true)}
             >
-                {loading ?
-                    <Loading /> :
-                    <>
-                        <span className='add-icon'></span>
-                        Tambah
-                    </>}
+                <span className='add-icon'></span>
+                Tambah
             </Button>
         </div>
     )

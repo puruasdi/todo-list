@@ -10,16 +10,23 @@ import ModalDelete from '../../components/ModalDelete';
 //router
 import { Link } from "react-router-dom";
 
+//redux
+import { useDispatch } from "react-redux"
+import { setSelectedActivity } from '../../state/slice/activitySlice'
+
 //set moment local to Indonesia
 import moment from "moment"
 import 'moment/locale/id';
 moment.locale('id');
 
-export default function DashboardActivity({ activities, deleteActivity }) {
+export default function DashboardActivity({ activities, handleDelete }) {
+    //redux
+    const dispatch = useDispatch()
+
     const [modalShow, setModalShow] = useState(false);
 
     //select activity to get activity.id on delete purpose
-    const [selectedActivity, setSelectedActivity] = useState('')
+    const [deleteActivity, setDeleteActivity] = useState('')
 
     return (
         <>
@@ -28,15 +35,15 @@ export default function DashboardActivity({ activities, deleteActivity }) {
                 show={modalShow}
                 setShow={setModalShow}
                 name="activity"
-                value={selectedActivity?.title}
-                id={selectedActivity?.id}
-                handleDelete={deleteActivity}
+                value={deleteActivity?.title}
+                id={deleteActivity?.id}
+                handleDelete={handleDelete}
             />
             <Row>
                 {activities.map(activity => (
                     <Col md="6" lg='3' className='card-wrapper' key={activity.id}>
                         <div className='activity-card' data-cy="activity-item">
-                            <Link to={`detail/1`} className="link-custom" >
+                            <Link to={`detail/${activity.id}`} className="link-custom" onClick={() => dispatch(setSelectedActivity(activity))} >
                                 <div className='activity-container' >
                                     <h4 data-cy="activity-item-title" >{activity.title}</h4>
                                 </div>
@@ -47,7 +54,7 @@ export default function DashboardActivity({ activities, deleteActivity }) {
                                     src={deleteIcon}
                                     alt="Delete Icon"
                                     data-cy="activity-item-delete-button"
-                                    onClick={() => { setSelectedActivity(activity); setModalShow(true); }}
+                                    onClick={() => { setDeleteActivity(activity); setModalShow(true); }}
                                 />
                             </div>
                         </div>

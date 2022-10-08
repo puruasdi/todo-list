@@ -162,9 +162,10 @@ header h2 {
 }
 
 .dropdown-item {
-    display: flex;
+    display: flex !important;
     padding: 14px 21px;
-    border: 1px solid #E5E5E5
+    border: 1px solid #E5E5E5;
+    align-items: center;
 }
 
 .dropdown-item-name {
@@ -275,10 +276,29 @@ button[disabled] {
     height: 14px;
     width: 14px;
     border-radius: 50%;
-    background-color: #ed4c5c;
     margin-top: auto;
     margin-bottom: auto;
     margin-right: 16px;
+}
+
+.very-high {
+    background-color: #ed4c5c !important;
+}
+
+.high {
+    background-color: #F8A541;
+}
+
+.normal {
+    background-color: #00A790;
+}
+
+.low {
+    background-color: #428BC1;
+}
+
+.very-low {
+    background-color: #8942C1;
 }
 
 .todo-list-name {
