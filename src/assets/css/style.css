@@ -1,18 +1,36 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+
 body {
     margin: 0;
-    font-family: 'Poppins', sans-serif !important;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    font-family: "Poppins", sans-serif !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
     background-color: #f4f4f4 !important;
 }
 
+
+/* Page warapper */
 .wrapper {
     max-width: 1000px;
     margin: auto;
 }
 
+/* Empty dashboard */
+.container {
+    max-width: 1000px;
+}
 
-/* header-background */
+.dashbaord-empty {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.card-wrapper {
+    padding: 0 20px 0 0;
+}
+
+/*Page Header Style */
 header {
     width: 100%;
     color: white;
@@ -28,8 +46,7 @@ header h2 {
     font-size: 24px;
 }
 
-/* Style for content header */
-
+/* Content header style */
 .content-header {
     margin: 49px 0px 59px;
     display: flex;
@@ -67,7 +84,7 @@ header h2 {
     vertical-align: middle;
 }
 
-.new-activity-title {
+.header-title {
     display: flex;
     align-items: center;
 }
@@ -88,38 +105,104 @@ header h2 {
     display: flex;
 }
 
-#customSortButton {
-    width: 54px;
-    height: 54px;
-    margin-right: 18px;
-    border: 1px solid #E5E5E5;
-    border-radius: 50%;
-    display: flex;
-    cursor: pointer;
-}
-
-#sortIcon {
+.sort-icon {
     width: 24px;
     margin: auto;
 }
 
-/* Style for empty dashboard content */
-
-.container {
-    max-width: 1000px;
+.input-activity {
+    font-weight: 700;
+    font-size: 36px;
+    background-color: #f4f4f4;
+    border-top: none;
+    border-left: none;
+    border-right: none;
 }
 
-.dashbaord-empty {
+.input-activity:focus {
+    outline: none;
+}
+
+/* Dropdown custom style */
+.dropdown-toggle.btn-primary {
+    border-radius: 50%;
+    background-color: transparent !important;
+    height: 54px !important;
+    width: 54px !important;
+    margin-right: 18px;
+    border: 2px solid #e5e5e5 !important
+}
+
+.dropdown-toggle::after {
+    display: none !important;
+}
+
+.dropdown-menu-container {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.dropdown-item-container {
+    height: 52px !important;
+    padding: 0 !important;
+    width: 235px !important;
+}
+
+.dropdown-item {
     display: flex;
-    justify-content: center;
-    width: 100%;
+    padding: 14px 21px;
+    border: 1px solid #E5E5E5
 }
 
-/* Style for dashboard activity */
-.card-wrapper {
-    padding: 0 20px 0 0;
+.dropdown-item-name {
+    margin-left: 15px;
 }
 
+.dropdown-item-img {
+    width: 24px;
+    height: 24px;
+}
+
+.dropdown-item-check {
+    margin-left: auto;
+}
+
+/* Button style */
+.btn {
+    border-radius: 45px !important;
+    height: 54px !important;
+    border: 0 !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+}
+
+.modal-content .modal-footer .btn {
+    width: 150px;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.modal-content .modal-body .btn {
+    border: #E5E5E5 2px solid !important;
+    border-radius: 6px !important;
+}
+
+.btn.btn-primary {
+    background-color: #16ABF8;
+}
+
+.btn.btn-danger {
+    background-color: #ED4C5C;
+}
+
+button:disabled,
+button[disabled] {
+    opacity: 0.2 !important;
+}
+
+/* Header Activity */
 .activity-card {
     height: 234px;
     background-color: #fff;
@@ -154,26 +237,124 @@ header h2 {
     cursor: pointer;
 }
 
-/* Button style */
-.button {
-    border-radius: 45px;
-    border: 0;
-    padding: 13.5px 29px;
-    font-size: 18px;
-    font-weight: 600;
-    width: 150px;
-    height: 54px;
-    margin: 0 10px !important;
+/* Todo list card */
+.todo-list-card {
+    margin-bottom: 10px;
+    height: 80px !important;
+    padding: 28px !important;
+    flex-direction: row !important;
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.1) !important;
+    border-radius: 12px !important;
 }
 
-.delete-button {
+.todo-list-check {
+    margin-right: 22px !important;
+}
+
+.todo-list-check input {
+    width: 25px !important;
+    height: 25px !important;
+    margin-top: 0 !important;
+}
+
+.todo-list-indicator {
+    height: 14px;
+    width: 14px;
+    border-radius: 50%;
     background-color: #ed4c5c;
-    color: #f4f4f4;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 16px;
 }
 
-.cancel-button {
-    background-color: #f4f4f4;
-    color: #4a4a4a;
+.todo-list-name {
+    font-weight: 500;
+    font-size: 18px;
+    margin-right: 20px;
+}
+
+.todo-done {
+    text-decoration: line-through;
+    color: #888;
+}
+
+.todo-list-edit {
+    width: 20px;
+    cursor: pointer;
+}
+
+.todo-list-delete {
+    width: 20px;
+    margin-left: auto;
+    cursor: pointer;
+}
+
+/* Modal custom */
+.modal-padding-custom {
+    padding: 24px !important;
+}
+
+.modal-title {
+    font-weight: 600 !important;
+    font-size: 18px !important;
+}
+
+/* Delete modal */
+#footerStyle {
+    justify-content: center;
+    border: 0;
+    padding-bottom: 43px;
+}
+
+#headerStyle {
+    border: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#titleStyle {
+    padding-top: 34px;
+}
+
+#bodyStyle {
+    text-align: center;
+    padding: 0 46px 0 46px;
+}
+
+#pBodyStyle {
+    font-weight: 500;
+    font-size: 18px;
+}
+
+
+/* Form custom */
+.form-label-custom {
+    font-weight: 600 !important;
+    font-size: 12px !important;
+}
+
+.form-input-custom {
+    font-weight: 400 !important;
+    font-size: 16px !important;
+    height: 52px !important;
+}
+
+.form-select-option {
+    height: 52px !important;
+}
+
+.form-dropdown-custom {
+    background-color: white !important;
+    color: black !important;
+    height: 52px !important;
+    width: 205px !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.form-dropdown-custom::after {
+    margin-left: auto !important;
 }
 
 /* Loading ring */
