@@ -28,10 +28,12 @@ export default function TodoListItem(props) {
     const [deleteTodo, setDeleteTodo] = useState('')
 
     const handleUpdateActive = async (value, id, index) => {
+        //Update todo in this component
         const newTodos = [...filterTodos]
         newTodos[index].is_active = !value
         setfilterTodos(newTodos)
-
+        
+        //Update todo on api
         try {
             await axios.patch(`${mainurl}/todo-items/${id}`, {
                 "is_active": !value
@@ -41,12 +43,14 @@ export default function TodoListItem(props) {
         }
     }
     const handleDeleteTodo = async (id) => {
+        //Delete todo in this component
         dispatch(setDeleteLoading(true))
         const newTodos = [...filterTodos]
         const objWithIdIndex = newTodos.findIndex((obj) => obj.id === id)
         newTodos.splice(objWithIdIndex, 1);
         setfilterTodos(newTodos)
         
+        //Delete todo on api
         try {
             await axios.delete(`${mainurl}/todo-items/${id}`);
             dispatch(setDeleteLoading(false))

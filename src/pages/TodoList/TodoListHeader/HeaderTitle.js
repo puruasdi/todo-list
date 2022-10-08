@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react';
+import axios from 'axios'
 
 //router
 import { Link } from "react-router-dom";
@@ -7,10 +8,20 @@ import { Link } from "react-router-dom";
 import backIcon from "../../../assets/img/back-icon.svg"
 import editIcon from "../../../assets/img/edit-icon.svg"
 
+//redux
+import { useSelector } from 'react-redux'
+
+//Enviroment
+const mainurl = process.env.REACT_APP_MAIN_URL
+
 export default function HeaderTitle() {
+    //redux
+    const selectedActivity = useSelector((state) => state.activity.selectedActivity)
+
     //state for edit activity
     const [edit, setEdit] = useState(false)
-    const [activityValue, setActivityValue] = useState("New Activity")
+    const [activityValue, setActivityValue] = useState(selectedActivity.title)
+
 
     const inputRef = useRef(null);
 
@@ -23,9 +34,18 @@ export default function HeaderTitle() {
 
     // Check if user click mouse outside input when state is edit
     useEffect(() => {
-        function handleClickOutside(event) {
+        const handleClickOutside = async (event) => {
             if (inputRef.current && !inputRef.current.contains(event.target)) {
                 setEdit(false)
+
+                //Update activity on api
+                try {
+                    await axios.patch(`${mainurl}/activity-groups/${selectedActivity.id}`, {
+                        "title": inputRef.current.value
+                    });
+                } catch (error) {
+                    console.log(error)
+                }
             }
         }
         document.addEventListener("mousedown", handleClickOutside);
@@ -33,7 +53,6 @@ export default function HeaderTitle() {
             document.removeEventListener("mousedown", handleClickOutside);
         };
     }, [inputRef])
-
 
     return (
         <div className='header-title'>
