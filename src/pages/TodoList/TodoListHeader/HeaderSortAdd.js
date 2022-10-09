@@ -34,16 +34,20 @@ export default function HeaderSortAdd({ showDropdown }) {
             {showDropdown ?
                 <Dropdown>
                     <Dropdown.Toggle>
-                        <img
-                            data-cy="todo-sort-button"
-                            src={sortIcon} className="sort-icon" alt="Sort" />
+                        <div data-cy="todo-sort-button">
+                            <img
+                                src={sortIcon} className="sort-icon" alt="Sort"
+                            />
+
+                        </div>
                     </Dropdown.Toggle>
                     <Dropdown.Menu
                         data-cy="sort-parent"
                         className='dropdown-menu-container' >
                         {dropdownItems.map(item => (
                             <Dropdown.Item href="#/"
-                                data-cy={item.testName}
+                                // data-cy={item.testName}
+                                data-cy="sort-selection"
                                 key={item.name}
                                 className="dropdown-item-container"
                                 onClick={() => dispatch(setSelectedSort(item.name))}

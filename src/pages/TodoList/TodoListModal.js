@@ -135,7 +135,7 @@ export default function TodoListModal(props) {
             </Modal.Body>
             <Modal.Footer className='modal-padding-custom' >
                 <Button
-                    data-cy="modal-ad-save-button"
+                    data-cy="modal-add-save-button"
                     disabled={!todo.title}
                     onClick={() => handleSubmit()}>
                     {addLoading ?
