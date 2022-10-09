@@ -9,7 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './components/Header';
 import Dashboard from './pages/Dashboard/Dashboard';
 import TodoList from './pages/TodoList/TodoList';
-import ErrorPage from './components/Error';
+// import ErrorPage from './components/Error';
 import ModalAlert from './components/ModalAlert';
 
 //Route
@@ -26,7 +26,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Dashboard />,
-    errorElement: <ErrorPage />,
+    // errorElement: <ErrorPage />,
   },
   {
     path: "detail/:detailId",

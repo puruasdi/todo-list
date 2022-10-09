@@ -8,19 +8,22 @@ import Loading from './Loading';
 import alertIcon from '../assets/img/alert-icon.svg'
 
 //redux
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
+import { setModalDelete } from '../state/slice/modalSlice';
 
 export default function ModalDelete(props) {
-    const { name, value, setShow, show, handleDelete, id } = props
+    const { name, value, handleDelete, id } = props
 
     //redux
+    const dispatch = useDispatch()
     const deleteLoading = useSelector((state) => state.loading.deleteLoading)
+    const modalDelete = useSelector((state) => state.modal.modalDelete)
 
     return (
         <Modal
             data-cy="modal-delete"
-            show={show}
-            onHide={() => setShow(false)}
+            show={modalDelete}
+            onHide={() => dispatch(setModalDelete(false))}
             size="md"
             centered
         >
@@ -46,7 +49,8 @@ export default function ModalDelete(props) {
                 <Button
                     data-cy="modal-delete-cancel-button"
                     variant="light"
-                    onClick={() => setShow(false)}>
+                    onClick={() => dispatch(setModalDelete(false))}
+                >
                     Batal
                 </Button>
                 <Button

@@ -13,6 +13,7 @@ import ModalAlert from '../../components/ModalAlert'
 //Redux
 import { useDispatch } from "react-redux"
 import { setContentLoading, setDeleteLoading, setAddLoading } from "../../state/slice/loadingsSlice"
+import { setModalDelete } from '../../state/slice/modalSlice';
 
 //Enviroment
 const mainurl = process.env.REACT_APP_MAIN_URL
@@ -50,8 +51,10 @@ export default function Dashboard() {
             await axios.delete(`${mainurl}/activity-groups/${id}`);
             getActivities()
             dispatch(setDeleteLoading(false))
+            dispatch(setModalDelete(false))
             setShowAlert(true)
         } catch (error) {
+            dispatch(setModalDelete(false))
             dispatch(setDeleteLoading(false))
         }
     }

@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 //redux
 import { useDispatch } from "react-redux"
 import { setSelectedActivity } from '../../state/slice/activitySlice'
+import { setModalDelete } from '../../state/slice/modalSlice';
 
 //set moment local to Indonesia
 import moment from "moment"
@@ -23,16 +24,12 @@ export default function DashboardActivity({ activities, handleDelete }) {
     //redux
     const dispatch = useDispatch()
 
-    const [modalShow, setModalShow] = useState(false);
-
     //select activity to get activity.id on delete purpose
     const [deleteActivity, setDeleteActivity] = useState('')
 
     return (
         <>
             <ModalDelete
-                show={modalShow}
-                setShow={setModalShow}
                 name="activity"
                 value={deleteActivity?.title}
                 id={deleteActivity?.id}
@@ -57,7 +54,7 @@ export default function DashboardActivity({ activities, handleDelete }) {
                                     data-cy="activity-item-delete-button"
                                     src={deleteIcon}
                                     alt="Delete Icon"
-                                    onClick={() => { setDeleteActivity(activity); setModalShow(true); }}
+                                    onClick={() => { setDeleteActivity(activity); dispatch(setModalDelete(true)); }}
                                 />
                             </div>
                         </div>
