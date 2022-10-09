@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/todo-list/static/css/main.86e6a38c.css",
+    "main.js": "/todo-list/static/js/main.931f81dd.js",
+    "static/media/empty-dashboard.png": "/todo-list/static/media/empty-dashboard.75ec54ee6cd926eeea8c.png",
+    "static/media/todo-empty.png": "/todo-list/static/media/todo-empty.a0b4b794b96022e0fb71.png",
+    "static/media/alert-icon.svg": "/todo-list/static/media/alert-icon.8a9d938520ae1433cefc8e030da2f1af.svg",
+    "static/media/delete-icon.svg": "/todo-list/static/media/delete-icon.1e080ddb2d7e894aaa5dca0dba1c2894.svg",
+    "index.html": "/todo-list/index.html",
+    "static/media/sort-az-icon.svg": "/todo-list/static/media/sort-az-icon.a5b00cb97943fa5c1edd4d4597f2c51f.svg",
+    "static/media/sort-za-icon.svg": "/todo-list/static/media/sort-za-icon.ddb25d4be3daed7ef6781951d48810a6.svg",
+    "static/media/sort-newest-icon.svg": "/todo-list/static/media/sort-newest-icon.11f12a88e216da8e6ac534feed5b7806.svg",
+    "static/media/sort-latest-icon.svg": "/todo-list/static/media/sort-latest-icon.abb68f3353f576be473b87e950d3cd28.svg",
+    "static/media/edit-icon.svg": "/todo-list/static/media/edit-icon.c48dd33aa848d53253d6656e298a57ff.svg",
+    "static/media/icon-alert-small.svg": "/todo-list/static/media/icon-alert-small.1484df0dae8bab64f5693689d27dbd04.svg",
+    "static/media/active-icon.svg": "/todo-list/static/media/active-icon.eb235793ef2b18a7a930157470174604.svg",
+    "static/media/close-icon.svg": "/todo-list/static/media/close-icon.72631f1e6505e103548b.svg",
+    "static/media/add-icon.svg": "/todo-list/static/media/add-icon.5eca95bb5b5317c37c69.svg",
+    "static/media/sort-icon.svg": "/todo-list/static/media/sort-icon.197e6f4f215e0008c655db487f1852ec.svg",
+    "static/media/back-icon.svg": "/todo-list/static/media/back-icon.0fe266ef77c01657693a0364041ef806.svg",
+    "static/media/check-icon.svg": "/todo-list/static/media/check-icon.c3d5921997ba112f089e4c4bcb94ddc8.svg",
+    "static/media/dropdown-icon.svg": "/todo-list/static/media/dropdown-icon.e6b091537b996fd875ff.svg",
+    "main.86e6a38c.css.map": "/todo-list/static/css/main.86e6a38c.css.map",
+    "main.931f81dd.js.map": "/todo-list/static/js/main.931f81dd.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.86e6a38c.css",
+    "static/js/main.931f81dd.js"
+  ]
+}
