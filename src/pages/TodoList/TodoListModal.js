@@ -56,6 +56,7 @@ export default function TodoListModal(props) {
 
     return (
         <Modal
+            data-cy="modal-add"
             show={showTodoModal}
             onHide={() => {
                 dispatch(setSelectedTodo(''));
@@ -65,27 +66,50 @@ export default function TodoListModal(props) {
             size="lg"
             centered
         >
-            <Modal.Header closeButton className='modal-padding-custom'>
+            <Modal.Header
+                data-cy="modal-add-title"
+                className='modal-padding-custom'>
                 <Modal.Title>
                     {selectedTodo.id ?
                         "Edit Item" :
                         "Tambah List Item"
                     }
                 </Modal.Title>
+                <div
+                    data-cy="modal-add-close-button"
+                    className='close-button'
+                    onClick={() => dispatch(setShowTodoModal(false))}
+                ></div>
             </Modal.Header>
             <Modal.Body className='modal-padding-custom'>
                 <Form>
                     <Form.Group className="mb-4">
-                        <Form.Label className='form-label-custom'>NAMA LIST ITEM</Form.Label>
-                        <Form.Control size="lg" type="text" placeholder="Tambahkan nama Activity" className='form-input-custom' value={todo.title} onChange={(e) => handleInputChange("title", e.target.value)} />
+                        <Form.Label
+                            data-cy="modal-add-name-title"
+                            className='form-label-custom'>
+                            NAMA LIST ITEM
+                        </Form.Label>
+                        <Form.Control
+                            data-cy="modal-add-name-input"
+                            className='form-input-custom' value={todo.title}
+                            size="lg"
+                            type="text"
+                            placeholder="Tambahkan nama Activity"
+                            onChange={(e) => handleInputChange("title", e.target.value)} />
                     </Form.Group>
                     <Form.Group className="mb-3">
-                        <Form.Label className='form-label-custom'>PRIORITY</Form.Label>
+                        <Form.Label
+                            data-cy="modal-add-priority-title"
+                            className='form-label-custom'>
+                            PRIORITY
+                        </Form.Label>
                         <Row>
                             <Col sm='6'>
                                 <Dropdown>
-                                    <Dropdown.Toggle variant="success"
+                                    <Dropdown.Toggle
+                                        data-cy="modal-add-priority-dropdown"
                                         className="form-dropdown-custom"
+                                        variant="success"
                                     >
                                         <div className={`todo-list-indicator ${todo.priority}`}>
                                         </div>
@@ -95,7 +119,11 @@ export default function TodoListModal(props) {
 
                                     <Dropdown.Menu>
                                         {priorityOption.map(priority => (
-                                            <Dropdown.Item href="#/" key={priority} onClick={() => handleInputChange('priority', priority)} >{priority}</Dropdown.Item>
+                                            <Dropdown.Item href="#/"
+                                                key={priority}
+                                                onClick={() => handleInputChange('priority', priority)} >
+                                                {priority}
+                                            </Dropdown.Item>
                                         ))}
                                     </Dropdown.Menu>
                                 </Dropdown>
@@ -105,7 +133,10 @@ export default function TodoListModal(props) {
                 </Form>
             </Modal.Body>
             <Modal.Footer className='modal-padding-custom' >
-                <Button disabled={!todo.title} onClick={() => handleSubmit()}>
+                <Button
+                    data-cy="modal-ad-save-button"
+                    disabled={!todo.title}
+                    onClick={() => handleSubmit()}>
                     {addLoading ?
                         <Loading /> :
                         <>

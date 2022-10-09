@@ -17,11 +17,11 @@ import { setSelectedSort, setShowTodoModal } from '../../../state/slice/todoSlic
 
 //Varibale for dropdown items
 const dropdownItems = [
-    { name: "Terbaru", iconName: sortNewestIcon },
-    { name: "Terlama", iconName: sortLatestIcon },
-    { name: "A-Z", iconName: sortAZIcon },
-    { name: "Z-A", iconName: sortZAIcon },
-    { name: "Belum Selesai", iconName: activeIcon },
+    { name: "Terbaru", iconName: sortNewestIcon, testName: "sort-latest" },
+    { name: "Terlama", iconName: sortLatestIcon, testName: "sort-oldest" },
+    { name: "A-Z", iconName: sortAZIcon, testName: "sort-az" },
+    { name: "Z-A", iconName: sortZAIcon, testName: "sort-za" },
+    { name: "Belum Selesai", iconName: activeIcon, testName: "sort-unfinished" },
 ]
 
 export default function HeaderSortAdd({ showDropdown }) {
@@ -34,11 +34,16 @@ export default function HeaderSortAdd({ showDropdown }) {
             {showDropdown ?
                 <Dropdown>
                     <Dropdown.Toggle>
-                        <img src={sortIcon} className="sort-icon" alt="Sort" />
+                        <img
+                            data-cy="todo-sort-button"
+                            src={sortIcon} className="sort-icon" alt="Sort" />
                     </Dropdown.Toggle>
-                    <Dropdown.Menu className='dropdown-menu-container' >
+                    <Dropdown.Menu
+                        data-cy="sort-parent"
+                        className='dropdown-menu-container' >
                         {dropdownItems.map(item => (
                             <Dropdown.Item href="#/"
+                                data-cy={item.testName}
                                 key={item.name}
                                 className="dropdown-item-container"
                                 onClick={() => dispatch(setSelectedSort(item.name))}
@@ -58,8 +63,8 @@ export default function HeaderSortAdd({ showDropdown }) {
             }
 
             <Button
+                data-cy="todo-add-button"
                 className='custom-button'
-                data-cy="activity-add-button"
                 onClick={() => dispatch(setShowTodoModal(true))}
             >
                 <span className='add-icon'></span>

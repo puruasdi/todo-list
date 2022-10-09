@@ -100,20 +100,40 @@ export default function TodoListItem(props) {
                 handleDelete={handleDeleteTodo}
             />
             {filterTodos.map((todo, index) => (
-                <Card className='todo-list-card' key={todo.id}>
+                <Card
+                    data-cy="todo-item"
+                    className='todo-list-card'
+                    key={todo.id}
+                >
                     <Form.Check
+                        data-cy="todo-item-checkbox"
                         className='todo-list-check'
                         checked={!todo?.is_active}
                         type='checkbox'
                         onChange={(e) => handleUpdateActive(e.target.checked, todo.id, index)} />
-                    <div className={`todo-list-indicator ${todo.priority}`}>
+                    <div
+                        data-cy="todo-item-priority-indicator"
+                        className={`todo-list-indicator ${todo.priority}`}>
                     </div>
-                    <span className={`todo-list-name ${todo.is_active ? '' : 'todo-done'}`}>
+                    <span
+                        data-cy="todo-item-title"
+                        className={`todo-list-name ${todo.is_active ? '' : 'todo-done'}`}>
                         {todo.title}
                     </span>
-                    <img src={editIcon} alt="edit todo" className='todo-list-edit' onClick={() => { dispatch(setSelectedTodo(todo)); dispatch(setShowTodoModal(true)) }} />
-                    <img src={deleteIcon} alt="delete todo" className='todo-list-delete'
-                        onClick={() => { setDeleteTodo(todo); setDeleteModal(true) }}
+                    <img
+                        data-cy="todo-item-edit-button"
+                        src={editIcon} alt="edit todo" className='todo-list-edit'
+                        onClick={() => {
+                            dispatch(setSelectedTodo(todo));
+                            dispatch(setShowTodoModal(true))
+                        }} />
+                    <img
+                        data-cy="todo-item-delete-button"
+                        src={deleteIcon} alt="delete todo" className='todo-list-delete'
+                        onClick={() => {
+                            setDeleteTodo(todo);
+                            setDeleteModal(true)
+                        }}
                     />
                 </Card>
             ))}

@@ -31,7 +31,6 @@ export default function DashboardActivity({ activities, handleDelete }) {
     return (
         <>
             <ModalDelete
-                data-cy="todo-modal-delete"
                 show={modalShow}
                 setShow={setModalShow}
                 name="activity"
@@ -42,18 +41,22 @@ export default function DashboardActivity({ activities, handleDelete }) {
             <Row>
                 {activities.map(activity => (
                     <Col md="6" lg='3' className='card-wrapper' key={activity.id}>
-                        <div className='activity-card' data-cy="activity-item">
+                        <div
+                            data-cy="activity-item"
+                            className='activity-card' >
                             <Link to={`detail/${activity.id}`} className="link-custom" onClick={() => dispatch(setSelectedActivity(activity))} >
                                 <div className='activity-container' >
                                     <h4 data-cy="activity-item-title" >{activity.title}</h4>
                                 </div>
                             </Link>
                             <div className='activity-footer'>
-                                <span data-cy="activity-item-date" className='activity-date'>{moment(activity.created_at).format('LL')}</span>
+                                <span data-cy="activity-item-date"
+                                    className='activity-date'>
+                                    {moment(activity.created_at).format('LL')}</span>
                                 <img
+                                    data-cy="activity-item-delete-button"
                                     src={deleteIcon}
                                     alt="Delete Icon"
-                                    data-cy="activity-item-delete-button"
                                     onClick={() => { setDeleteActivity(activity); setModalShow(true); }}
                                 />
                             </div>

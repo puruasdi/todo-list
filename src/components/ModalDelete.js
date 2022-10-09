@@ -18,6 +18,7 @@ export default function ModalDelete(props) {
 
     return (
         <Modal
+            data-cy="modal-delete"
             show={show}
             onHide={() => setShow(false)}
             size="md"
@@ -25,11 +26,16 @@ export default function ModalDelete(props) {
         >
             <Modal.Header id="headerStyle">
                 <Modal.Title id="titleStyle">
-                    <img src={alertIcon} alt="Warning" />
+                    <img
+                        data-cy="modal-delet-icon"
+                        src={alertIcon} alt="Warning"
+                    />
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body id="bodyStyle">
-                <p id="pBodyStyle">
+                <p
+                    data-cy="modal-delete-title"
+                    id="pBodyStyle">
                     Apakah anda yakin menghapus {name} {" "}
                     <b>"{value}"</b>
                 </p>
@@ -37,8 +43,14 @@ export default function ModalDelete(props) {
             <Modal.Footer
                 id="footerStyle"
             >
-                <Button variant="light" onClick={() => setShow(false)}>Batal</Button>
                 <Button
+                    data-cy="modal-delete-cancel-button"
+                    variant="light"
+                    onClick={() => setShow(false)}>
+                    Batal
+                </Button>
+                <Button
+                    data-cy="modal-delete-confirm-button"
                     className='custom-button'
                     variant="danger"
                     onClick={() => handleDelete(id)}

@@ -15,8 +15,8 @@ export default function DashboardHeader({ handleClick }) {
         <div className='content-header'>
             <h1 data-cy="activity-title">Activity</h1>
             <Button
-                className='custom-button'
                 data-cy="activity-add-button"
+                className='custom-button'
                 onClick={() => handleClick()}
             >
                 {addLoading ?

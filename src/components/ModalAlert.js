@@ -8,6 +8,7 @@ export default function ModalAlert(props) {
 
     return (
         <Modal
+            data-cy="modal-information"
             show={showAlert}
             onHide={() => setShowAlert(false)}
             size="md"
@@ -20,8 +21,14 @@ export default function ModalAlert(props) {
                     paddingLeft: "30px"
                 }}
             >
-                <img src={iconAlertSmall} alt="Alert" />
-                <p style={{ marginLeft: '13px' }}>
+                <img
+                    data-cy="modal-information-icon"
+                    src={iconAlertSmall} alt="Alert"
+                />
+                <p
+                    data-cy="modal-information-title"
+                    style={{ marginLeft: '13px' }}
+                >
                     {alertName} berhasil dihapus
                 </p>
             </Modal.Body>

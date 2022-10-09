@@ -8,7 +8,10 @@ import { setShowTodoModal } from '../../state/slice/todoSlice'
 export default function TodoListEmpty() {
     const dispatch = useDispatch()
     return (
-        <div className='dashbaord-empty' onClick={() => dispatch(setShowTodoModal(true))}>
+        <div
+            data-cy="todo-empty-state"
+            className='dashbaord-empty'
+            onClick={() => dispatch(setShowTodoModal(true))}>
             <img src={emptyImage} alt="Empty Dashboard" />
         </div>
     )

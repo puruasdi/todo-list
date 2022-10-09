@@ -52,11 +52,13 @@ export default function HeaderTitle() {
         return () => {
             document.removeEventListener("mousedown", handleClickOutside);
         };
-    }, [inputRef])
+    }, [inputRef, selectedActivity])
 
     return (
         <div className='header-title'>
-            <Link to={`/`}>
+            <Link
+                data-cy="todo-back-button"
+                to={`/`} >
                 <img src={backIcon} className="back-icon" alt="Back" />
             </Link>
             {edit ?
@@ -67,9 +69,12 @@ export default function HeaderTitle() {
                     onChange={(e) => setActivityValue(e.target.value)}
                 />
                 :
-                <h1 data-cy="activity-title">{activityValue}</h1>
+                <h1 data-cy="todo-title">{activityValue}</h1>
             }
-            <img src={editIcon} className="edit-icon" alt="Edit" onClick={() => setEdit(!edit)} />
+            <img
+                data-cy="todo-title-edit-button"
+                src={editIcon} className="edit-icon" alt="Edit"
+                onClick={() => setEdit(!edit)} />
         </div>
     )
 }

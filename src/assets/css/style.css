@@ -333,6 +333,17 @@ button[disabled] {
     font-size: 18px !important;
 }
 
+.close-button {
+    background-image: url("../img/close-icon.svg");
+    width: 24px;
+    height: 24px;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
 /* Delete modal */
 #footerStyle {
     justify-content: center;
