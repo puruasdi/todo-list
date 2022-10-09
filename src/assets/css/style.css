@@ -396,6 +396,18 @@ button[disabled] {
     color: black !important;
 }
 
+.dropdown-icon {
+    background-image: url('../img/dropdown-icon.svg');
+    margin-left: auto;
+    width: 24px;
+    height: 24px;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
 /* Loading ring */
 .lds-ring {
     display: inline-block;

@@ -8,11 +8,11 @@ import DashboardHeader from './DashboardHeader';
 import DashboardEmpty from './DashboardEmpty';
 import DashboardActivity from './DashboardActivity';
 import BigLoading from '../../components/BigLoading';
+import ModalAlert from '../../components/ModalAlert'
 
 //Redux
 import { useSelector, useDispatch } from "react-redux"
 import { setContentLoading, setDeleteLoading, setAddLoading } from "../../state/slice/loadingsSlice"
-import { setAlertName, setShowAlert } from '../../state/slice/alertSlice';
 
 //Enviroment
 const mainurl = process.env.REACT_APP_MAIN_URL
@@ -23,6 +23,10 @@ export default function Dashboard() {
     const dispatch = useDispatch()
     const contentLoading = useSelector((state) => state.loading.contentLoading)
 
+    //state for alert
+    const [showAlert, setShowAlert] = useState(false)
+
+    //activity list from api
     const [activities, setActivities] = useState([])
 
     const getActivities = useCallback(
@@ -46,8 +50,7 @@ export default function Dashboard() {
             await axios.delete(`${mainurl}/activity-groups/${id}`);
             getActivities()
             dispatch(setDeleteLoading(false))
-            dispatch(setAlertName("Activity"))
-            dispatch(setShowAlert(true))
+            setShowAlert(true)
         } catch (error) {
             dispatch(setDeleteLoading(false))
         }
@@ -74,6 +77,11 @@ export default function Dashboard() {
 
     return (
         <Container>
+            <ModalAlert
+                showAlert={showAlert}
+                setShowAlert={setShowAlert}
+                alertName='Activity'
+            />
             <div className='wrapper'>
                 <DashboardHeader
                     handleClick={addActivity}

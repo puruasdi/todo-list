@@ -12,12 +12,13 @@ import ModalDelete from '../../components/ModalDelete'
 //redux
 import { useSelector, useDispatch } from "react-redux"
 import { setDeleteLoading } from "../../state/slice/loadingsSlice"
+import { setShowTodoModal, setSelectedTodo } from '../../state/slice/todoSlice'
 
 //Enviroment
 const mainurl = process.env.REACT_APP_MAIN_URL
 
 export default function TodoListItem(props) {
-    const { setModalShow, todos } = props;
+    const { todos, setTodos } = props;
     //redux
     const dispatch = useDispatch()
     const selectedSort = useSelector((state) => state.todo.selectedSort)
@@ -32,7 +33,7 @@ export default function TodoListItem(props) {
         const newTodos = [...filterTodos]
         newTodos[index].is_active = !value
         setfilterTodos(newTodos)
-        
+
         //Update todo on api
         try {
             await axios.patch(`${mainurl}/todo-items/${id}`, {
@@ -49,7 +50,12 @@ export default function TodoListItem(props) {
         const objWithIdIndex = newTodos.findIndex((obj) => obj.id === id)
         newTodos.splice(objWithIdIndex, 1);
         setfilterTodos(newTodos)
-        
+
+        //Reset parent state to show empty page
+        if (newTodos.length === 0) {
+            setTodos([])
+        }
+
         //Delete todo on api
         try {
             await axios.delete(`${mainurl}/todo-items/${id}`);
@@ -81,7 +87,6 @@ export default function TodoListItem(props) {
             default:
                 break;
         }
-
     }, [todos, selectedSort])
 
     return (
@@ -106,7 +111,7 @@ export default function TodoListItem(props) {
                     <span className={`todo-list-name ${todo.is_active ? '' : 'todo-done'}`}>
                         {todo.title}
                     </span>
-                    <img src={editIcon} alt="edit todo" className='todo-list-edit' onClick={() => setModalShow(true)} />
+                    <img src={editIcon} alt="edit todo" className='todo-list-edit' onClick={() => { dispatch(setSelectedTodo(todo)); dispatch(setShowTodoModal(true)) }} />
                     <img src={deleteIcon} alt="delete todo" className='todo-list-delete'
                         onClick={() => { setDeleteTodo(todo); setDeleteModal(true) }}
                     />

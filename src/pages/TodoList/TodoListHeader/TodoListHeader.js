@@ -4,12 +4,13 @@ import React from 'react';
 import HeaderTitle from './HeaderTitle';
 import HeaderSortAdd from './HeaderSortAdd';
 
-export default function TodoListHeader({ handleClick }) {
+export default function TodoListHeader({ handleClick, showDropdown }) {
     return (
         <div className='content-header'>
             <HeaderTitle />
             <HeaderSortAdd
                 handleClick={handleClick}
+                showDropdown={showDropdown}
             />
         </div>
     )

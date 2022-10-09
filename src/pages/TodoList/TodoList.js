@@ -13,20 +13,19 @@ import BigLoading from '../../components/BigLoading'
 
 //Redux
 import { useSelector, useDispatch } from "react-redux"
-import { setContentLoading, setDeleteLoading, setAddLoading } from "../../state/slice/loadingsSlice"
-import { setAlertName, setShowAlert } from '../../state/slice/alertSlice';
+import { setContentLoading, setAddLoading } from "../../state/slice/loadingsSlice"
+import { setShowTodoModal, setSelectedTodo } from '../../state/slice/todoSlice';
 
 //Enviroment
 const mainurl = process.env.REACT_APP_MAIN_URL
 
 export default function TodoList() {
-    const [showModal, setShowModal] = useState(false);
-    const [todos, setTodos] = useState([])
-
     //redux 
     const dispatch = useDispatch()
     const contentLoading = useSelector((state) => state.loading.contentLoading)
     const selectedActivity = useSelector((state) => state.activity.selectedActivity)
+
+    const [todos, setTodos] = useState([])
 
     const getTodos = useCallback(
         async (id) => {
@@ -43,6 +42,23 @@ export default function TodoList() {
         [dispatch],
     )
 
+    const addTodo = async (body) => {
+        dispatch(setAddLoading(true))
+        try {
+            await axios.post(`${mainurl}/todo-items`, body);
+            getTodos(selectedActivity.id)
+            resetModalState()
+        } catch (error) {
+            resetModalState()
+        }
+    }
+
+    const resetModalState = () => {
+        dispatch(setAddLoading(false))
+        dispatch(setSelectedTodo(''))
+        dispatch(setShowTodoModal(false))
+    }
+
     useEffect(() => {
         if (selectedActivity) {
             getTodos(selectedActivity.id)
@@ -54,24 +70,21 @@ export default function TodoList() {
             <Container>
                 <div className='wrapper'>
                     <TodoListModal
-                        show={showModal}
-                        setShow={setShowModal}
+                        addTodo={addTodo}
                     />
                     <TodoListHeader
-                        handleClick={setShowModal}
+                        showDropdown={todos.length !== 0}
                     />
                     {contentLoading ?
                         // Show loading while fecthing the api
                         < BigLoading /> :
                         todos.length === 0 ?
                             //If data is empty show empty todo pages
-                            <TodoListEmpty
-                                setShowModal={setShowModal}
-                            /> :
+                            <TodoListEmpty /> :
                             //show todo list
                             <TodoListItem
                                 todos={todos}
-                                setShowModal={setShowModal}
+                                setTodos={setTodos}
                             />
                     }
                 </div>

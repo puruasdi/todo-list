@@ -1,31 +1,75 @@
-// import { useState } from 'react'
-import { Modal, Form, Row, Col, Dropdown } from 'react-bootstrap'
-import Button from 'react-bootstrap/Button';
+import { useState, useEffect } from 'react'
+import { Modal, Form, Row, Col, Dropdown, Button } from 'react-bootstrap'
 
-const selectDropdown = "Very High"
+//component
+import Loading from '../../components/Loading'
+
+//redux
+import { useSelector, useDispatch } from 'react-redux';
+import { setShowTodoModal, setSelectedTodo } from '../../state/slice/todoSlice';
+
+const defaultTodo = {
+    title: '',
+    priority: "very-high",
+    is_active: true,
+    activity_group_id: 0
+}
+
+const priorityOption = [
+    'very-high', 'high', 'normal', 'low', 'very-low'
+]
 
 export default function TodoListModal(props) {
-    const { show, setShow } = props;
+    const { addTodo } = props;
+    //redux
+    const dispatch = useDispatch()
+    const { showTodoModal, selectedTodo } = useSelector((state) => state.todo)
+    const selectedActivity = useSelector((state) => state.activity.selectedActivity)
+    const addLoading = useSelector((state) => state.loading.addLoading)
 
-    // const [selectDropdown, setSelectDropdown] = useState("Very High")
+    //State to save input change
+    const [todo, setTodo] = useState(defaultTodo)
+
+    const handleInputChange = (name, value) => {
+        setTodo((current) => {
+            return { ...current, [name]: value }
+        })
+    }
+
+    useEffect(() => {
+        if (showTodoModal) {
+            if (selectedTodo.id) {
+                setTodo(selectedTodo)
+            } else {
+                setTodo({ ...defaultTodo, activity_group_id: selectedActivity.id })
+            }
+        }
+    }, [selectedTodo, selectedActivity, showTodoModal])
 
     return (
         <Modal
-            show={show}
-            onHide={() => setShow(false)}
+            show={showTodoModal}
+            onHide={() => {
+                dispatch(setSelectedTodo(''));
+                dispatch(setShowTodoModal(false));
+                setTodo(defaultTodo)
+            }}
             size="lg"
             centered
         >
             <Modal.Header closeButton className='modal-padding-custom'>
                 <Modal.Title>
-                    Modal heading
+                    {selectedTodo.id ?
+                        "Edit Item" :
+                        "Tambah List Item"
+                    }
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body className='modal-padding-custom'>
                 <Form>
                     <Form.Group className="mb-4">
                         <Form.Label className='form-label-custom'>NAMA LIST ITEM</Form.Label>
-                        <Form.Control size="lg" type="text" placeholder="Tambahkan nama Activity" className='form-input-custom' />
+                        <Form.Control size="lg" type="text" placeholder="Tambahkan nama Activity" className='form-input-custom' value={todo.title} onChange={(e) => handleInputChange("title", e.target.value)} />
                     </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label className='form-label-custom'>PRIORITY</Form.Label>
@@ -35,17 +79,16 @@ export default function TodoListModal(props) {
                                     <Dropdown.Toggle variant="success"
                                         className="form-dropdown-custom"
                                     >
-                                        <div className='todo-list-indicator'>
+                                        <div className={`todo-list-indicator ${todo.priority}`}>
                                         </div>
-                                        <span >{selectDropdown}</span>
+                                        <span >{todo.priority}</span>
+                                        <div className='dropdown-icon'></div>
                                     </Dropdown.Toggle>
 
                                     <Dropdown.Menu>
-                                        <Dropdown.Item href="#/action-1">Very High</Dropdown.Item>
-                                        <Dropdown.Item href="#/action-1">High</Dropdown.Item>
-                                        <Dropdown.Item href="#/action-1">Normal</Dropdown.Item>
-                                        <Dropdown.Item href="#/action-1">Low</Dropdown.Item>
-                                        <Dropdown.Item href="#/action-1">Very Low</Dropdown.Item>
+                                        {priorityOption.map(priority => (
+                                            <Dropdown.Item href="#/" key={priority} onClick={() => handleInputChange('priority', priority)} >{priority}</Dropdown.Item>
+                                        ))}
                                     </Dropdown.Menu>
                                 </Dropdown>
                             </Col>
@@ -53,9 +96,14 @@ export default function TodoListModal(props) {
                     </Form.Group>
                 </Form>
             </Modal.Body>
-            <Modal.Footer className='modal-padding-custom'>
-                <Button>
-                    Simpan
+            <Modal.Footer className='modal-padding-custom' >
+                <Button disabled={!todo.title} onClick={() => addTodo(todo)}>
+                    {addLoading ?
+                        <Loading /> :
+                        <>
+                            <span className='add-icon'></span>
+                            Simpan
+                        </>}
                 </Button>
             </Modal.Footer>
         </Modal>
