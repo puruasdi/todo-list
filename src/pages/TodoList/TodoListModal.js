@@ -120,6 +120,7 @@ export default function TodoListModal(props) {
                                     <Dropdown.Menu>
                                         {priorityOption.map(priority => (
                                             <Dropdown.Item href="#/"
+                                                data-cy="modal-add-priority-item"
                                                 key={priority}
                                                 onClick={() => handleInputChange('priority', priority)} >
                                                 {priority}

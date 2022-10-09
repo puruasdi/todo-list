@@ -63,13 +63,17 @@ export default function HeaderTitle() {
             </Link>
             {edit ?
                 <input
+                    data-cy="todo-title"
                     className="input-activity"
                     ref={inputRef}
                     value={activityValue}
                     onChange={(e) => setActivityValue(e.target.value)}
                 />
                 :
-                <h1 data-cy="todo-title">{activityValue}</h1>
+                <h1
+                    data-cy="todo-title"
+                    onClick={() => setEdit(!edit)}
+                >{activityValue}</h1>
             }
             <img
                 data-cy="todo-title-edit-button"
