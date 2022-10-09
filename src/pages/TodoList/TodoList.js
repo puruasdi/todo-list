@@ -42,10 +42,23 @@ export default function TodoList() {
         [dispatch],
     )
 
-    const addTodo = async (body) => {
+    const addTodo = async (todo) => {
         dispatch(setAddLoading(true))
         try {
-            await axios.post(`${mainurl}/todo-items`, body);
+            await axios.post(`${mainurl}/todo-items`, todo);
+            getTodos(selectedActivity.id)
+            resetModalState()
+        } catch (error) {
+            resetModalState()
+        }
+    }
+    const updateTodo = async (todo) => {
+        dispatch(setAddLoading(true))
+        try {
+            await axios.patch(`${mainurl}/todo-items/${todo.id}`, {
+                "title": todo.title,
+                "priority": todo.priority
+            });
             getTodos(selectedActivity.id)
             resetModalState()
         } catch (error) {
@@ -71,6 +84,7 @@ export default function TodoList() {
                 <div className='wrapper'>
                     <TodoListModal
                         addTodo={addTodo}
+                        updateTodo={updateTodo}
                     />
                     <TodoListHeader
                         showDropdown={todos.length !== 0}

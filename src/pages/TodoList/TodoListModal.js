@@ -20,7 +20,7 @@ const priorityOption = [
 ]
 
 export default function TodoListModal(props) {
-    const { addTodo } = props;
+    const { addTodo, updateTodo } = props;
     //redux
     const dispatch = useDispatch()
     const { showTodoModal, selectedTodo } = useSelector((state) => state.todo)
@@ -34,6 +34,14 @@ export default function TodoListModal(props) {
         setTodo((current) => {
             return { ...current, [name]: value }
         })
+    }
+
+    const handleSubmit = () => {
+        if (todo.id) {
+            updateTodo(todo)
+        } else {
+            addTodo(todo)
+        }
     }
 
     useEffect(() => {
@@ -97,7 +105,7 @@ export default function TodoListModal(props) {
                 </Form>
             </Modal.Body>
             <Modal.Footer className='modal-padding-custom' >
-                <Button disabled={!todo.title} onClick={() => addTodo(todo)}>
+                <Button disabled={!todo.title} onClick={() => handleSubmit()}>
                     {addLoading ?
                         <Loading /> :
                         <>
