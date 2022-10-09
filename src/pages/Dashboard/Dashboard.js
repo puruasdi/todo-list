@@ -61,7 +61,7 @@ export default function Dashboard() {
         try {
             await axios.post(`${mainurl}/activity-groups`, {
                 "title": "New Activity",
-                "email": "asdi@email.com"
+                "email": process.env.REACT_APP_EMAIL
             });
             getActivities()
             dispatch(setAddLoading(false))
