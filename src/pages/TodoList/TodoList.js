@@ -9,7 +9,7 @@ import TodoListHeader from './TodoListHeader/TodoListHeader'
 import TodoListEmpty from './TodoListEmpty'
 import TodoListItem from './TodoListItem'
 import TodoListModal from './TodoListModal'
-import BigLoading from '../../components/BigLoading'
+// import BigLoading from '../../components/BigLoading'
 
 //Redux
 import { useSelector, useDispatch } from "react-redux"
@@ -22,7 +22,7 @@ const mainurl = process.env.REACT_APP_MAIN_URL
 export default function TodoList() {
     //redux 
     const dispatch = useDispatch()
-    const contentLoading = useSelector((state) => state.loading.contentLoading)
+    // const contentLoading = useSelector((state) => state.loading.contentLoading)
     const selectedActivity = useSelector((state) => state.activity.selectedActivity)
 
     const [todos, setTodos] = useState([])
@@ -89,7 +89,18 @@ export default function TodoList() {
                     <TodoListHeader
                         showDropdown={todos.length !== 0}
                     />
-                    {contentLoading ?
+
+                    {todos.length === 0 ?
+                        //If data is empty show empty todo pages
+                        <TodoListEmpty /> :
+                        //show todo list
+                        <TodoListItem
+                            todos={todos}
+                            setTodos={setTodos}
+                        />
+                    }
+
+                    {/* {contentLoading ?
                         // Show loading while fecthing the api
                         < BigLoading /> :
                         todos.length === 0 ?
@@ -100,7 +111,7 @@ export default function TodoList() {
                                 todos={todos}
                                 setTodos={setTodos}
                             />
-                    }
+                    } */}
                 </div>
             </Container>
         )

@@ -7,11 +7,11 @@ import axios from 'axios'
 import DashboardHeader from './DashboardHeader';
 import DashboardEmpty from './DashboardEmpty';
 import DashboardActivity from './DashboardActivity';
-import BigLoading from '../../components/BigLoading';
+// import BigLoading from '../../components/BigLoading';
 import ModalAlert from '../../components/ModalAlert'
 
 //Redux
-import { useSelector, useDispatch } from "react-redux"
+import { useDispatch } from "react-redux"
 import { setContentLoading, setDeleteLoading, setAddLoading } from "../../state/slice/loadingsSlice"
 
 //Enviroment
@@ -21,7 +21,7 @@ const email = `?email=${process.env.REACT_APP_EMAIL}`
 export default function Dashboard() {
     //redux 
     const dispatch = useDispatch()
-    const contentLoading = useSelector((state) => state.loading.contentLoading)
+    // const contentLoading = useSelector((state) => state.loading.contentLoading)
 
     //state for alert
     const [showAlert, setShowAlert] = useState(false)
@@ -87,7 +87,19 @@ export default function Dashboard() {
                     handleClick={addActivity}
                 />
 
-                {contentLoading ?
+                {activities.length === 0 ?
+                    //If data is empty show empty dashboard
+                    <DashboardEmpty
+                        addActivity={addActivity}
+                    /> :
+                    //Show activicty cards
+                    <DashboardActivity
+                        activities={activities}
+                        handleDelete={deleteActivity}
+                    />
+                }
+
+                {/* {contentLoading ?
                     // Show loading while fecthing the api
                     < BigLoading /> :
                     activities.length === 0 ?
@@ -100,7 +112,7 @@ export default function Dashboard() {
                             activities={activities}
                             handleDelete={deleteActivity}
                         />
-                }
+                } */}
             </div>
         </Container>
     )
