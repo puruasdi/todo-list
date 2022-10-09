@@ -13,6 +13,7 @@ import ModalDelete from '../../components/ModalDelete'
 import { useSelector, useDispatch } from "react-redux"
 import { setDeleteLoading } from "../../state/slice/loadingsSlice"
 import { setShowTodoModal, setSelectedTodo } from '../../state/slice/todoSlice'
+import { setModalDelete } from '../../state/slice/modalSlice';
 
 //Enviroment
 const mainurl = process.env.REACT_APP_MAIN_URL
@@ -25,7 +26,6 @@ export default function TodoListItem(props) {
 
     //state
     const [filterTodos, setfilterTodos] = useState([])
-    const [deleteModal, setDeleteModal] = useState(false)
     const [deleteTodo, setDeleteTodo] = useState('')
 
     const handleUpdateActive = async (value, id, index) => {
@@ -60,10 +60,10 @@ export default function TodoListItem(props) {
         try {
             await axios.delete(`${mainurl}/todo-items/${id}`);
             dispatch(setDeleteLoading(false))
-            setDeleteModal(false)
+            dispatch(setModalDelete(true))
         } catch (error) {
             dispatch(setDeleteLoading(false))
-            setDeleteModal(false)
+            dispatch(setModalDelete(true))
         }
     }
 
@@ -92,8 +92,6 @@ export default function TodoListItem(props) {
     return (
         <>
             <ModalDelete
-                show={deleteModal}
-                setShow={setDeleteModal}
                 name="todo"
                 value={deleteTodo?.title}
                 id={deleteTodo?.id}
@@ -132,7 +130,7 @@ export default function TodoListItem(props) {
                         src={deleteIcon} alt="delete todo" className='todo-list-delete'
                         onClick={() => {
                             setDeleteTodo(todo);
-                            setDeleteModal(true)
+                            dispatch(setModalDelete(true))
                         }}
                     />
                 </Card>
