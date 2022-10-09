@@ -75,6 +75,14 @@ export default function TodoList() {
     useEffect(() => {
         if (selectedActivity) {
             getTodos(selectedActivity.id)
+            const fetchData = async () => {
+                try {
+                    await axios.patch(`${mainurl}/activity-groups/${selectedActivity.id}`);
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+            fetchData()
         }
     }, [selectedActivity, getTodos])
 

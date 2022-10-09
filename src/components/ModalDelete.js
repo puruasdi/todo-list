@@ -30,7 +30,7 @@ export default function ModalDelete(props) {
             <Modal.Header id="headerStyle">
                 <Modal.Title id="titleStyle">
                     <img
-                        data-cy="modal-delet-icon"
+                        data-cy="modal-delete-icon"
                         src={alertIcon} alt="Warning"
                     />
                 </Modal.Title>
