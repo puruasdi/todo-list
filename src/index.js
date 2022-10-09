@@ -10,7 +10,6 @@ import Header from './components/Header';
 import Dashboard from './pages/Dashboard/Dashboard';
 import TodoList from './pages/TodoList/TodoList';
 // import ErrorPage from './components/Error';
-import ModalAlert from './components/ModalAlert';
 
 //Route
 import {
@@ -40,7 +39,6 @@ root.render(
   <Provider store={store}>
     <Header />
     <RouterProvider router={router} />
-    <ModalAlert />
   </Provider>
   // </React.StrictMode>
 );

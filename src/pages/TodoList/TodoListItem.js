@@ -14,12 +14,13 @@ import { useSelector, useDispatch } from "react-redux"
 import { setDeleteLoading } from "../../state/slice/loadingsSlice"
 import { setShowTodoModal, setSelectedTodo } from '../../state/slice/todoSlice'
 import { setModalDelete } from '../../state/slice/modalSlice';
+import ModalAlert from '../../components/ModalAlert'
 
 //Enviroment
 const mainurl = process.env.REACT_APP_MAIN_URL
 
 export default function TodoListItem(props) {
-    const { todos, setTodos } = props;
+    const { todos } = props;
     //redux
     const dispatch = useDispatch()
     const selectedSort = useSelector((state) => state.todo.selectedSort)
@@ -27,6 +28,9 @@ export default function TodoListItem(props) {
     //state
     const [filterTodos, setfilterTodos] = useState([])
     const [deleteTodo, setDeleteTodo] = useState('')
+
+    //state for alert
+    const [showAlert, setShowAlert] = useState(false)
 
     const handleUpdateActive = async (value, id, index) => {
         //Update todo in this component
@@ -51,20 +55,19 @@ export default function TodoListItem(props) {
         newTodos.splice(objWithIdIndex, 1);
         setfilterTodos(newTodos)
 
-        //Reset parent state to show empty page
-        if (newTodos.length === 0) {
-            setTodos([])
-        }
-
         //Delete todo on api
         try {
             await axios.delete(`${mainurl}/todo-items/${id}`);
-            dispatch(setDeleteLoading(false))
-            dispatch(setModalDelete(true))
+            resetState()
         } catch (error) {
-            dispatch(setDeleteLoading(false))
-            dispatch(setModalDelete(true))
+            resetState()
         }
+    }
+
+    const resetState = () => {
+        dispatch(setDeleteLoading(false))
+        dispatch(setModalDelete(false))
+        setShowAlert(true)
     }
 
     useEffect(() => {
@@ -91,6 +94,11 @@ export default function TodoListItem(props) {
 
     return (
         <>
+            <ModalAlert
+                showAlert={showAlert}
+                setShowAlert={setShowAlert}
+                alertName='Todo'
+            />
             <ModalDelete
                 name="todo"
                 value={deleteTodo?.title}
