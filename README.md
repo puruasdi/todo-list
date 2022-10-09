@@ -1,7 +1,7 @@
 ### `setting your env`
-Create :
+Create file .env:
 
-REACT_APP_EMAIL = youremail@email.com
+REACT_APP_EMAIL = youremail@email.com\
 REACT_APP_MAIN_URL = https://yourmain.apiurl.com
 
 ### `npm install`
